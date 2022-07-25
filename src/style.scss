@@ -109,4 +109,63 @@ main {
         margin-right: variables.$edge-margin;
         display: block;
     }
+
+    .toc {
+        display: flex;
+        background: #FFFFFF;
+        position: sticky;
+        top: 0;
+
+        a {
+            all: unset;
+            display: block;
+            font-family: inherit;
+            padding: 10pt 5pt;
+            margin-right: 3pt;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #DDDDDD;
+            }
+
+            &:active {
+                background-color: #CCCCCC;
+            }
+        }
+    }
+}
+
+// Footer
+
+footer {
+    text-align: center;
+    background-color: #F0F0F0;
+    padding: 20pt;
+
+    .socials {
+        a {
+            text-decoration: none;
+            display: inline-block;
+            
+            &:not(:first-child) {
+                padding-left: 12pt;
+            }
+
+            img {
+                width: 30pt;
+                height: 30pt;
+                transition: transform 0.2s;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &:active {
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
 }

@@ -20,5 +20,8 @@
     "@parcel/transformer-sass": "^2.6.2",
     "parcel": "^2.6.2",
     "sharp": "^0.29.3"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.9.1"
   }
 }

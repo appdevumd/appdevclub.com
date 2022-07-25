@@ -1,0 +1,24 @@
+{
+  "name": "appdevclub.com",
+  "version": "0.0.1",
+  "description": "The App Dev Club website",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appdevumd/appdevclub.com.git"
+  },
+  "author": "The App Dev Club leadership team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/appdevumd/appdevclub.com/issues"
+  },
+  "homepage": "https://github.com/appdevumd/appdevclub.com#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.2",
+    "parcel": "^2.6.2",
+    "sharp": "^0.29.3"
+  }
+}

@@ -110,10 +110,15 @@ main {
         display: block;
     }
 
+    p {
+        line-height: 1.5rem;
+    }
+
     .toc {
         display: flex;
         background: #FFFFFF;
         position: sticky;
+        z-index: 999;
         top: 0;
 
         a {
@@ -132,6 +137,70 @@ main {
 
             &:active {
                 background-color: #CCCCCC;
+            }
+        }
+    }
+
+    .burning {
+        color: #ff6a00;
+        text-shadow: 0 1pt 3pt #ff3300;
+        filter: blur(0.25pt);
+    }
+
+    .leadership {
+        display: flex;
+        flex-direction: row;
+        column-gap: calc(8% / 3);
+        align-content: flex-start;
+        flex-wrap: wrap;
+
+        @media (max-width: variables.$doc-width) {
+            display: block;
+        }
+
+        & > div {
+            flex: 0 1 23%;
+            border-radius: 7pt;
+            background-color: #EAEAEA;
+            overflow: hidden;
+            margin-bottom: 15pt;
+
+            h3 {
+                margin: 0;
+                padding: 7pt;
+                background-color: #CACACA;
+            }
+
+            p {
+                padding: 3pt 7pt;
+                margin: 0;
+            }
+
+            .socials {
+                padding: 3pt 7pt;
+
+                a {
+                    text-decoration: none;
+                    display: inline-block;
+                    
+                    &:not(:first-child) {
+                        padding-left: 6pt;
+                    }
+        
+                    img {
+                        width: 20pt;
+                        height: 20pt;
+                        transition: transform 0.2s;
+        
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+        
+                        &:active {
+                            transform: scale(0.9);
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,39 +1,72 @@
-window.onload = function() {
-    fetch('https://script.google.com/macros/s/AKfycbz3rn7mYGAyQ9_YT5gw2uBvZGZe0kQdmV_HamrT7O6lk_moLbCIozpoow4ZhFBZCiRZ/exec?target=events')
-    .then((response) => response.json())
-    .then((data) => document.getElementById('events-output').innerHTML = JSON.stringify(data));
+import { APPS_SCRIPT_ENDPOINT } from "./consts";
 
-    fetch('https://script.google.com/macros/s/AKfycbz3rn7mYGAyQ9_YT5gw2uBvZGZe0kQdmV_HamrT7O6lk_moLbCIozpoow4ZhFBZCiRZ/exec?target=leadership')
+const endpointUrlForTarget = target => APPS_SCRIPT_ENDPOINT + "?target=" + target;
+
+fetch(endpointUrlForTarget("events"))
+    .then((response) => response.json())
+    .then((eventList) => {
+        let mountPoint = document.getElementById("events-output");
+        mountPoint.textContent = "";
+
+        eventList.forEach(event => {
+            let eventListItem = document.createElement("li");
+            eventListItem.textContent = `${event.name} (${event.location} on ${event.dateTime})`;
+            mountPoint.appendChild(eventListItem);
+        })
+    });
+
+fetch(endpointUrlForTarget("useful_links"))
+    .then((response) => response.json())
+    .then((linkList) => {
+        let mountPoint = document.getElementById("useful-links-output");
+        mountPoint.textContent = "";
+
+        linkList.forEach(link => {
+            let containerListItem = document.createElement("li");
+            containerListItem.textContent = `${link.name} (${link.location} on ${link.dateTime})`;
+
+            let linkText = document.createElement("a");
+            linkText.textContent = `${link.name}`;
+            linkText.href = link.url;
+            containerListItem.appendChild(linkText);
+
+            mountPoint.appendChild(containerListItem);
+        })
+    })
+    .catch(err => {
+        document.querySelector("#useful-links-output li").textContent = "Looks like we don't have any useful links for now. Check back later.";
+    })
+
+fetch(endpointUrlForTarget("leadership"))
     .then((response) => response.json())
     .then((data) => {
         let outputHTML = "";
-        for (let i = 0; i < data.length; i ++) {
+        for (let i = 0; i < data.length; i++) {
             outputHTML += `<div>`;
-            outputHTML += `<h3>${data[i]['name']}</h3>`;
-            outputHTML += `<p>${data[i]['role']}</p>`;
+            outputHTML += `<h3>${data[i]["name"]}</h3>`;
+            outputHTML += `<p>${data[i]["role"].replace("&", "&amp;")}</p>`;
             outputHTML += `<div class="socials">`;
             // links
-            if (data[i]['github'] != "") {
-                outputHTML += `<a href="${data[i]['github']}" title="LinkedIn" target="_blank" rel="noopener noreferrer">`;
-                outputHTML += `<img src="../node_modules/bootstrap-icons/icons/github.svg" alt="GitHub">`;
+            if (data[i]["github"] != "") {
+                outputHTML += `<a href="${data[i]["github"]}" title="GitHub" target="_blank" rel="noopener noreferrer">`;
+                outputHTML += `<img src="${new URL("../node_modules/bootstrap-icons/icons/github.svg", import.meta.url)}" alt="GitHub">`;
                 outputHTML += `</a>`;
             }
 
-            if (data[i]['linkedin'] != "") {
-                outputHTML += `<a href="${data[i]['linkedin']}" title="GitHub" target="_blank" rel="noopener noreferrer">`;
-                outputHTML += `<img src="../node_modules/bootstrap-icons/icons/linkedin.svg" alt="LinkedIn">`;
+            if (data[i]["linkedin"] != "") {
+                outputHTML += `<a href="${data[i]["linkedin"]}" title="LinkedIn" target="_blank" rel="noopener noreferrer">`;
+                outputHTML += `<img src="${new URL("../node_modules/bootstrap-icons/icons/linkedin.svg", import.meta.url)}" alt="LinkedIn">`;
                 outputHTML += `</a>`;
             }
 
-            if (data[i]['website'] != "") {
-                outputHTML += `<a href="${data[i]['website']}" title="Personal Site" target="_blank" rel="noopener noreferrer">`;
-                outputHTML += `<img src="../node_modules/bootstrap-icons/icons/browser-safari.svg" alt="Personal Site">`;
+            if (data[i]["website"] != "") {
+                outputHTML += `<a href="${data[i]["website"]}" title="Personal Site" target="_blank" rel="noopener noreferrer">`;
+                outputHTML += `<img src="${new URL("../node_modules/bootstrap-icons/icons/browser-safari.svg", import.meta.url)}" alt="Personal Site">`;
                 outputHTML += `</a>`;
             }
 
             outputHTML += `</div>`;
             outputHTML += `</div>`;
         }
-        document.getElementById('test-leadership-output').innerHTML = outputHTML;
+        document.querySelector(".leadership").innerHTML = outputHTML;
     });
-}

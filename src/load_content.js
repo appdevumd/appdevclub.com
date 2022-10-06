@@ -23,7 +23,6 @@ fetch(endpointUrlForTarget("useful_links"))
 
         linkList.forEach(link => {
             let containerListItem = document.createElement("li");
-            containerListItem.textContent = `${link.name} (${link.location} on ${link.dateTime})`;
 
             let linkText = document.createElement("a");
             linkText.textContent = `${link.name}`;

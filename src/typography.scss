@@ -1,0 +1,9 @@
+code {
+    font-family: 'Jetbrains Mono', 'Menlo', 'Courier New', Courier, monospace;
+    background-color: #dddddd;
+}
+
+// This nonsense adds spacing between list and sublist elements
+li + li, ul ul li, ul + li {
+    margin-top: 7pt;
+}

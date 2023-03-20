@@ -1,4 +1,5 @@
 @use "variables";
+@use "typography";
 
 // CSS Resets
 
@@ -95,6 +96,11 @@ header {
         background-color: #FF0069;
         color: #FFFFFF;
     }
+
+    &.generic {
+        background-color: #00aeff;
+        color: #FFFFFF;
+    }
 }
 
 // Main content
@@ -182,20 +188,20 @@ main {
                 a {
                     text-decoration: none;
                     display: inline-block;
-                    
+
                     &:not(:first-child) {
                         padding-left: 6pt;
                     }
-        
+
                     img {
                         width: 20pt;
                         height: 20pt;
                         transition: transform 0.2s;
-        
+
                         &:hover {
                             transform: scale(1.1);
                         }
-        
+
                         &:active {
                             transform: scale(0.9);
                         }
@@ -217,7 +223,7 @@ footer {
         a {
             text-decoration: none;
             display: inline-block;
-            
+
             &:not(:first-child) {
                 padding-left: 12pt;
             }

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Dev Club @ UMD</title>
+    <meta name="description" content="App Dev Club is a group of students at UMD who have a burning desire to develop mobile apps.">
+
+    <link rel="stylesheet" href="style.scss">
+    <link rel="shortcut icon" href="images/SquareLogo.png?width=128" type="image/png">
+</head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="lead">
+                    <h1>Getting around Linux with the Terminal</h1>
+                    <p>App Dev Club + Bitcamp 2023</p>
+
+                    <div class="call-to-action-group">
+                        <a class="call-to-action generic" href="javascript:alert('VM to be activated on day of workshop - Email Ian for more info')">Access VM</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h2>Terminal Command Cheatsheet</h2>
+            <ul>
+                <li>
+                    <code>pwd</code> &ndash; <i>Print working directory</i> &ndash; Shows what folder you currently are in.
+                </li>
+
+                <li>
+                    <code>ls</code> &ndash; <i>List directory</i> &ndash; Shows the content of the folder you are currently in.
+                </li>
+                <ul>
+                    <li>
+                        <code>ls -a</code> &ndash; Includes hidden folders in output.
+                    </li>
+                    <li>
+                        <code>ls -l</code> &ndash; Shows more information about each thing in the folder.
+                    </li>
+                    <li>
+                        <code>ls -lh</code> &ndash; Shows more information about each thing in the folder and
+                        shows file sizes in "human-readable" numbers (like 42M or 7G, instead of long numbers)
+                    </li>
+                </ul>
+
+                <li>
+                    <code>cd <b>folder</b></code> &ndash; <i>Change directory</i> &ndash; Navigates to
+                    <code><b>folder</b></code>, such that any commands that you use after <code>cd</code> are applied
+                    relative to <code><b>folder</b></code>. For example, running <code>cd folder</code> and
+                    <code>less file</code> is equivalent to running <code>less folder/file</code>.
+                </li>
+                <ul>
+                    <li>
+                        <code>cd ..</code> &ndash; Moves to the folder that contains the one that you are currently in.
+                        In other words, changes to the parent directory.
+                    </li>
+                    <li>
+                        <code>cd ~</code> &ndash; Returns to your home folder.
+                    </li>
+                    <li>
+                        <code>cd /</code> &ndash; Moves to the root folder.
+                    </li>
+                </ul>
+
+                <li>
+                    <code>cat <b>file</b></code> &ndash; Prints the contents of <code><b>file</b></code> to the screen.
+                </li>
+
+                <li>
+                    <code>less <b>file</b></code> &ndash; Opens <code><b>file</b></code> in <code>less</code>, which
+                    lets you scroll through <code><b>file</b></code> and search for things within it. In general,
+                    <code>less</code> is better for longer files than <code>cat</code>.
+                </li>
+
+                <li>
+                    <code>mkdir <b>new-folder</b></code> &ndash; <i>Make directory</i> &ndash; Creates a new folder in
+                    the current one, named <code><b>new-folder</b></code>.
+                </li>
+
+                <li>
+                    <code>rm <b>file</b></code> &ndash; <i>Remove</i> &ndash; Deletes the file named
+                    <code><b>file</b></code>, it does not get sent to any sort of "trash," so be careful when using it.
+                </li>
+
+                <li>
+                    <code>rm -rf <b>folder</b></code> &ndash; <i>Remove, recursively, and with force</i> &ndash; Deletes
+                    the folder named <code><b>folder</b></code> and everything in it forever. <strong>This is a
+                    dangerous command</strong>, if you aren't careful, this command will let you obliterate every file
+                    on your computer.
+                </li>
+            </ul>
+
+            <h2>Vim Cheatsheet</h2>
+            <p>
+                Vim is a terminal-based text editor. Much like Notepad, TextEdit, or Visual Studio Code, Vim lets you
+                edit any sort of text file. However, it has one major difference: it runs solely inside of a terminal.
+                Vim is also different in another way: Vim is a modal editor, which means that actions like text-editing
+                and things like saving are done from different "modes"
+            </p>
+            <p>
+                To start editing a file with vim, just run <code>vim <b>file</b></code>, where <code><b>file</b></code>
+                is the name of the text file you want to edit. This will open Vim in its "normal" mode.
+            </p>
+
+            <h3>"Normal" Mode Commands</h3>
+            <p>
+                You can think of normal mode as the mode from which you run commands and enter other modes. A "full"
+                Vim cheatsheet could be the size of a small novel, so this cheatsheet only lists the most basic
+                commands.
+            </p>
+            <ul>
+                <li>
+                    <code>i</code> &ndash; Switch to "insert" mode, the mode where you can actually type.
+                </li>
+                <li>
+                    <code>:wq</code>, then press enter &ndash; Save the current file and then quit.
+                </li>
+                <li>
+                    <code>:w</code>, then press enter &ndash; Save the current file, but don't quit.
+                </li>
+                <li>
+                    <code>:q!</code>, then press enter &ndash; Quit without saving.
+                </li>
+            </ul>
+
+            <h3>"Insert" Mode</h3>
+            <p>
+                The primary usage of insert mode is typing, so pressing keys do what you would expect in a text editor,
+                it will type! However, to exit insert mode, just press escape and you will be back in normal mode.
+            </p>
+
+            <h3>An example Vim session</h3>
+            <p>
+                Below is a walkthrough of what making a file might look like in Vim, and a description of what each step
+                does.
+            </p>
+            <ol>
+                <li>
+                    <code>vim file.txt</code> &ndash; Start editing <code>file.txt</code>.
+                </li>
+                <li>
+                    <code>i</code> &ndash; Enter insert mode.
+                </li>
+                <li>
+                    Type <code>Hello world!</code> &ndash; Types the text, <code>Hello world!</code> into the new file.
+                </li>
+                <li>
+                    Press escape &ndash; Return to normal mode.
+                </li>
+                <li>
+                    <code>:wq</code>, then press enter &ndash; Writes the changes made (i.e. the text
+                    <code>Hello world!</code>) to <code>file.txt</code> and leave Vim.
+                </li>
+            </ol>
+
+            <h3>For more Vim knowledge...</h3>
+            <p>
+                I suggest the Vim cheat sheet found at
+                <a href="https://vim.rtorr.com/" target="_blank" ref="noopener noreferrer">https://vim.rtorr.com/</a>,
+                I use it myself whenever I find myself confused on how something works in Vim.
+            </p>
+
+        </main>
+    </body>
+</html>
